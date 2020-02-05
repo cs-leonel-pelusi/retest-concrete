@@ -10,7 +10,11 @@ const UserModel = Mongoose.model("User", {
   phone: {
     number: Number,
     ddd: Number
-  }  
+  },
+  created_at: { type : Date, default: Date.now },
+  updated_at: { type : Date, default: Date.now },
+  last_login: { type : Date, default: Date.now },
+  token: String  
 });
 
 const schemaJoiUpdate = {
