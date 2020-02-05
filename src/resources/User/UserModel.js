@@ -1,17 +1,26 @@
-const Mongoose = require('mongoose');
+'use strict';
 
-const schema = Mongoose.model("User", {
+const Mongoose = require('mongoose');
+const Joi = require('joi');
+
+const UserModel = Mongoose.model("User", {
   name: String,
   email: String,
   password: String,
   phone: {
-      number: number,
-      ddd: number
+    number: Number,
+    ddd: Number
   }  
 });
 
 const schemaJoiUpdate = {
-
+  name: Joi.string().optional(),
+  email: Joi.string().optional(),
+  password: Joi.string().optional(),
+  phone: {
+    number: Joi.number().optional(),
+    ddd: Joi.number().optional()
+  }
 }
 
 const schemaJoiSave = {
@@ -25,7 +34,7 @@ const schemaJoiSave = {
 }
 
 module.exports = {
-  schema,
+  UserModel,
   schemaJoiUpdate,
   schemaJoiSave
 };

@@ -1,4 +1,6 @@
-const UserModel = require('./UserModel');
+'use strict';
+
+const { UserModel } = require('./UserModel');
 
 const store = async (request, h) => { 
   try {
@@ -14,6 +16,15 @@ const getPeople = async (request, h) => {
   try {
     var people = await UserModel.find().exec();
     return h.response(people);
+  } catch (error) {
+    return h.response(error).code(500);
+  }
+}
+
+const getUserId = async (request, h) => { 
+  try {
+    var person = await UserModel.findById(request.params.id).exec();
+    return h.response(person);
   } catch (error) {
     return h.response(error).code(500);
   }

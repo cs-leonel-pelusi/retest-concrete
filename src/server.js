@@ -1,6 +1,9 @@
+'use strict';
+
 const Hapi = require('hapi');
 const Mongoose = require('mongoose');
-const UserRoute = require('./src/resources/User/UserRoute');
+
+const UserRoute = require('./resources/User/UserRoute');
 
 const init = async () => {
   
@@ -22,7 +25,7 @@ const init = async () => {
         }
   });
 
-  server.route(UserRoute);
+  UserRoute(server);
 
   process.on('unhandledRejection', (err) => {
 
