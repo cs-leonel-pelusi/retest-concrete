@@ -3,7 +3,7 @@
 const Mongoose = require('mongoose');
 const Joi = require('joi');
 
-const UserModel = Mongoose.model("User", {
+const UserModel = Mongoose.model("User", new Mongoose.Schema({
   name: String,
   email: String,
   password: String,
@@ -11,11 +11,8 @@ const UserModel = Mongoose.model("User", {
     number: Number,
     ddd: Number
   },
-  created_at: { type : Date, default: Date.now },
-  updated_at: { type : Date, default: Date.now },
-  last_login: { type : Date, default: Date.now },
   token: String  
-});
+}, {timestamps: true}));
 
 const schemaJoiUpdate = {
   name: Joi.string().optional(),
