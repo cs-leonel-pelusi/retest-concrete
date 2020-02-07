@@ -1,22 +1,18 @@
 'use strict';
 
-const Hapi = require('hapi');
-const Mongoose = require('mongoose');
-
 const UserRoute = require('./resources/User/UserRoute');
+const AuthRoute = require('./resources/Auth/AuthRoute');
+const server = require('./server');
+
+require('./services/mongoService');
+
 
 const init = async () => {
-  
-  const server = Hapi.server({
-    port: '3333',
-    host: 'localhost'
-  });
   
   await server.start();
   
   console.log("Server started!");
-  Mongoose.connect("mongodb://localhost/onboard");
-  
+
   server.route({
     method: 'GET',
         path: '/',
@@ -26,6 +22,7 @@ const init = async () => {
   });
 
   UserRoute(server);
+  AuthRoute(server);
 
   process.on('unhandledRejection', (err) => {
 

@@ -16,7 +16,7 @@ module.exports = function router(server) {
         failAction: (request, h, error) => {
           return error.isJoi ? h.response(error.details[0]).takeover() : h.response(error).takeover() ;
         }
-      }
+      },
     },
     handler: UserController.store
   });

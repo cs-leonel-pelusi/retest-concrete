@@ -1,14 +1,30 @@
 'use strict';
 
+const boom = require('@hapi/boom');
+const hash = require('../../utils/hash');
+
 const { UserModel } = require('./UserModel');
 
-const store = async (request, h) => { 
+const store = async (request, h) => {
   try {
-    var user = new UserModel(request.payload);
-    var result = await user.save();
-    return h.response(user);
+    const userData = request.payload;
+    const userExist = await UserModel.exists({ email: userData.email });
+
+    userData.password = await hash.make(userData.password, 8);
+ 
+    if (userExist) throw new Error('ERR_DUPLICATE_EMAIL');
+
+    var user = new UserModel(userData);
+    var result = await user.save();    
+    return h.response(result);
   } catch (error) {
-    h.responde(error).code(500);
+    console.log(error.message);
+    switch(error.message) {
+      case 'ERR_DUPLICATE_EMAIL':
+        throw boom.badData('E-mail duplicado!');
+      default:
+        throw boom.badImplementation;
+    }
   }
 }
 

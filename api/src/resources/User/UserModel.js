@@ -11,8 +11,10 @@ const UserModel = Mongoose.model("User", new Mongoose.Schema({
     number: Number,
     ddd: Number
   },
-  token: String  
-}, {timestamps: true}));
+  token: String,
+  last_login: { type: Number, default: new Date() }
+}, { timestamps: true },
+));
 
 const schemaJoiUpdate = {
   name: Joi.string().optional(),
