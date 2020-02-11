@@ -1,11 +1,12 @@
 const AuthController = require('./AuthController');
 
-module.exports = function router(server) {
-
-  server.route({
+module.exports = [
+  {
     method: 'POST',
     path: '/login',
+    options: {
+      auth: false,
+    },
     handler: AuthController.login, 
-  }); 
-
-}
+  }
+];

@@ -5,9 +5,8 @@ const Joi = require('joi');
 const UserController = require('./UserController');
 const { schemaJoiStore, schemaJoiUpdate } = require('./UserModel');
 
-module.exports = function router(server) {
-
-  server.route({
+module.exports = [
+  {
     method: 'POST',
     path: '/user',
     options: {
@@ -19,21 +18,18 @@ module.exports = function router(server) {
       },
     },
     handler: UserController.store
-  });
-  
-  server.route({
+  }, 
+  {
     method: 'GET',
     path: '/people',
     handler: UserController.getPeople
-  });
-  
-  server.route({
+  },
+  {
     method: 'GET',
     path: '/user/{id}',
     handler: UserController.getUserId
-  });
-  
-  server.route({
+  },
+  {
     method: 'PUT',
     path: '/user/{id}',
     options: {
@@ -45,11 +41,10 @@ module.exports = function router(server) {
       }
     },
     handler: UserController.update
-  });
-  
-  server.route({
+  },
+  {
     method: 'DELETE',
     path: '/user/{id}',
     handler: UserController.remove
-  });
-}
+  },
+];
