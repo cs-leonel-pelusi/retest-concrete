@@ -6,7 +6,6 @@ const server = require('./server');
 
 require('./services/mongoService');
 
-
 const init = async () => {
   
   await server.start();
@@ -20,15 +19,16 @@ const init = async () => {
             return 'Hello =)';
         }
   });
+  
 
   UserRoute(server);
   AuthRoute(server);
-
-  process.on('unhandledRejection', (err) => {
-
-      console.log(err);
-      process.exit(1);
-  });
 }
+
+process.on('unhandledRejection', (err) => {
+    
+  console.log(err);
+  process.exit(1);
+});
 
 init();
