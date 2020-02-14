@@ -1,9 +1,9 @@
 const bcrypt = require('bcryptjs');
 
-const make = value => (
+const make = (value) => (
   bcrypt.hash(value, 10)
 );
-  
+
 const compare = (value, valueHash) => (
   bcrypt.compare(value, valueHash)
 );
@@ -11,4 +11,4 @@ const compare = (value, valueHash) => (
 module.exports = {
   make,
   compare,
-}
+};

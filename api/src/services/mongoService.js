@@ -1,7 +1,7 @@
 const Mongoose = require('mongoose');
 
 const options = {
-  useNewUrlParser: true
-}
+  useNewUrlParser: true,
+};
 
-Mongoose.connect("mongodb://localhost/onboard", options);
+Mongoose.connect('mongodb://localhost/onboard', options);
