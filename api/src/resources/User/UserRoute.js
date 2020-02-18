@@ -1,13 +1,10 @@
 'use strict';
 
-const Joi = require('joi');
-
-const UserController = require('./UserController');
-const { schemaJoiStore, schemaJoiUpdate } = require('./UserModel');
-
 const boom = require('@hapi/boom');
 const hash = require('../../utils/hash');
 
+const UserController = require('./UserController');
+const { schemaJoiStore, schemaJoiUpdate } = require('./UserModel');
 const { UserModel } = require('./UserModel');
 const { generateTokeToStore } = require('../Auth/TokenAuth');
 

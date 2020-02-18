@@ -1,9 +1,9 @@
 'use strict';
 
 const Mongoose = require('mongoose');
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 
-const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
 const UserModel = Mongoose.model("User", new Mongoose.Schema({
   name: String,
@@ -18,29 +18,29 @@ const UserModel = Mongoose.model("User", new Mongoose.Schema({
 }, { timestamps: true },
 ));
 
-const schemaJoiUpdate = {
+const schemaJoiUpdate = Joi.object({
   name: Joi.string().optional(),
-  email: Joi.string().regex(emailRegex).optional(),
+  email: Joi.string().pattern(emailRegex).optional(),
   password: Joi.string().optional(),
   phone: {
     number: Joi.number().optional(),
     ddd: Joi.number().optional(),
-  }
-}
+  },
+  token: Joi.string().optional(),
+})
 
-const schemaJoiSave = {
+const schemaJoiStore = Joi.object({
   name: Joi.string().required(),
-  email: Joi.string().regex(emailRegex).required(),
+  email: Joi.string().pattern(emailRegex).required(),
   password: Joi.string().required(),
   phone: {
     number: Joi.number().required(),
     ddd: Joi.number().required(),
   },
-  token: Joi.string().required(),
-}
+})
 
 module.exports = {
   UserModel,
   schemaJoiUpdate,
-  schemaJoiSave
+  schemaJoiStore
 };
