@@ -22,7 +22,7 @@ module.exports = [
     method: 'POST',
     path: '/user',
     options: {
-      tags: ['api'],
+      tags: ['api', 'user'],
       auth: false,
       validate: {
         payload: schemaJoiStore,
@@ -37,7 +37,7 @@ module.exports = [
     method: 'GET',
     path: '/people',
     options: {
-      tags: ['api'],
+      tags: ['api', 'user'],
     },
     handler: controller.getPeople
   },
@@ -45,7 +45,7 @@ module.exports = [
     method: 'GET',
     path: '/user/{id}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'user'],
     },
     handler: controller.getUserId
   },
@@ -53,7 +53,7 @@ module.exports = [
     method: 'PUT',
     path: '/user/{id}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'user'],
       validate: {
         payload: schemaJoiUpdate,
         failAction: (request, h, error) => {
@@ -67,7 +67,7 @@ module.exports = [
     method: 'DELETE',
     path: '/user/{id}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'user'],
     },
     handler: controller.remove
   },

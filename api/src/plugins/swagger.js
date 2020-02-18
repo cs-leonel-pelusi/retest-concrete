@@ -1,20 +1,22 @@
-const package = require('../../../package');
+const swagger = require('hapi-swagger');
+
+const pkg = require('../../../package');
 
 module.exports = {
-  plugin: require('hapi-swagger'),
+  plugin: swagger,
   options: {
     info: {
       title: 'Onboard API Documentation',
-      version: package.version,
-    },  
+      version: pkg.version,
+    },
     tags: [{
-      'name': 'User',
-      'description': 'User routes',
+      name: 'User',
+      description: 'User routes',
     },
     {
-      'name': 'User',
-      'description': 'User routes',
+      name: 'User',
+      description: 'User routes',
     }],
+    documentationPath: '/docs',
   },
-}
-
+};

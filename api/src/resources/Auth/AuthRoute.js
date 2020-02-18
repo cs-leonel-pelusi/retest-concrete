@@ -5,7 +5,7 @@ module.exports = [
     method: 'POST',
     path: '/login',
     options: {
-      tags: ['api'],
+      tags: ['api', 'login'],
       auth: false,
     },
     handler: AuthController.login, 
