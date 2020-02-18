@@ -25,6 +25,7 @@ module.exports = [
     method: 'POST',
     path: '/user',
     options: {
+      tags: ['api'],
       auth: false,
       validate: {
         payload: schemaJoiStore,
@@ -38,17 +39,24 @@ module.exports = [
   {
     method: 'GET',
     path: '/people',
+    options: {
+      tags: ['api'],
+    },
     handler: controller.getPeople
   },
   {
     method: 'GET',
     path: '/user/{id}',
+    options: {
+      tags: ['api'],
+    },
     handler: controller.getUserId
   },
   {
     method: 'PUT',
     path: '/user/{id}',
     options: {
+      tags: ['api'],
       validate: {
         payload: schemaJoiUpdate,
         failAction: (request, h, error) => {
@@ -61,6 +69,9 @@ module.exports = [
   {
     method: 'DELETE',
     path: '/user/{id}',
+    options: {
+      tags: ['api'],
+    },
     handler: controller.remove
   },
 ];

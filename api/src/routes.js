@@ -6,6 +6,9 @@ const AuthRoute = require('./resources/Auth/AuthRoute');
 const HomeRoute = {
   method: 'GET',
     path: '/',
+    options: {
+      auth: false,
+    },
     handler: (request, h) => ('Hello =)')
 }
 
